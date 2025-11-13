@@ -46,7 +46,7 @@ void ImprimeViagens(TListaDePacotes* l){
     celula* aux;
     aux = l->primeiro->prox;
     while(aux!=NULL){
-            printf("Entrega: %s para %s\n",getConteudo(&aux->p),getDestinatario(&aux->p));
+            printf("Entrega: %s para %s com prioridade %d\n",getConteudo(&aux->p),getDestinatario(&aux->p),getPrioridade(&aux->p));
         aux = aux->prox;
     }
 }
