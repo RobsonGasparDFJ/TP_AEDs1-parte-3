@@ -39,11 +39,11 @@ int main(){
         inicializar(&pacotemanual);
         printf("Digite para cada pacote: conteudo, destinatario, peso, distancia de entrega:\n");
         for (int i=0 ; i<numdepacotesmanual; i++){
-            scanf("%99s %99s %d %d", 
+            scanf("%99s %99s %d %d %d", 
                 pacotemanual.conteudo,
                 pacotemanual.destinatario,
                 &pacotemanual.peso,
-                &pacotemanual.distancia);
+                &pacotemanual.distancia,&pacotemanual.prioridade);
             RecebimentoDePacote(&galpao, pacotemanual);
             // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotemanual.destinatario);
         }
@@ -92,11 +92,11 @@ int main(){
         TPacote pacotearquivo;
         inicializar(&pacotearquivo);
         for (int i=0 ; i<numdepacotes; i++){
-            fscanf(arquivo, "%99s %99s %d %d", 
+            fscanf(arquivo, "%99s %99s %d %d %d", 
                 pacotearquivo.conteudo,
                 pacotearquivo.destinatario,
                 &pacotearquivo.peso,
-                &pacotearquivo.distancia);
+                &pacotearquivo.distancia,&pacotearquivo.prioridade);
             RecebimentoDePacote(&galpao, pacotearquivo);
             // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotearquivo.destinatario);
         }

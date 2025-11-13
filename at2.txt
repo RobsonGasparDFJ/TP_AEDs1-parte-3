@@ -1,22 +1,22 @@
 20
 20
-remedio carlos 2 10
-comprasmercado mariana 10 8
-remedio ricardo 1 5
-comprasmercado fernanda 2 7
-remedio anderson 3 2
-livro gustavo 4 15
-ferramentas paula 5 12
-documentos renato 1 20
-comprasmercado sofia 8 9
-remedio felipe 2 6
-eletronico andrea 6 11
-livro marcelo 3 14
-remedio bianca 1 8
-comprasmercado roberto 7 13
-ferramentas luana 4 5
-roupa julia 2 10
-documentos ana 1 18
-livro rafael 5 9
-remedio lucas 3 7
-comprasmercado camila 9 16
+remedio carlos 2 10 4
+comprasmercado mariana 10 8 2
+remedio ricardo 1 5 2 
+comprasmercado fernanda 2 7 4
+remedio anderson 3 2 5
+livro gustavo 4 15 5
+ferramentas paula 5 12 1
+documentos renato 1 20 1
+comprasmercado sofia 8 9 2
+remedio felipe 2 6 3 
+eletronico andrea 6 11 3 
+livro marcelo 3 14 4
+remedio bianca 1 8 5
+comprasmercado roberto 7 13 5
+ferramentas luana 4 5 1
+roupa julia 2 10 1
+documentos ana 1 18 2
+livro rafael 5 9 3 
+remedio lucas 3 7 4 
+comprasmercado camila 9 16 2

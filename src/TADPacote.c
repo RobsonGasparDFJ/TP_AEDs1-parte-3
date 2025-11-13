@@ -24,7 +24,9 @@ void setPeso(TPacote* p,int x){
 void setDistancia(TPacote* p,int d){
     p->distancia = d;
 };
-
+void setPrioridade(TPacote* p, int u){
+    p->prioridade = u;
+}
 /*implementacao de atribuicao dos atributos do pacote*/
 char* getConteudo(TPacote* p){
     return p->conteudo;
@@ -38,3 +40,6 @@ int getPeso(TPacote* p){
 int getDistancia(TPacote* p){
     return p->distancia;
 };
+int getPrioridade(TPacote* p){
+    return p->prioridade;
+}
