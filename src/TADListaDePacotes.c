@@ -9,7 +9,7 @@ void fazListaVazia(TListaDePacotes* l){
     l->primeiro = (apontador) malloc(sizeof(celula));
     l->ultimo = l->primeiro;
     l->primeiro->prox = NULL;
-};
+}
 
 /*insere no final da lista*/
 void insereFinal(TListaDePacotes* l,TPacote x){
@@ -17,7 +17,7 @@ void insereFinal(TListaDePacotes* l,TPacote x){
     l->ultimo = l->ultimo->prox;
     l->ultimo->p = x;
     l->ultimo->prox = NULL;
-};
+}
 
 /*remove o item do inicio da lista de pacotes*/
 void removeInicio(TListaDePacotes* l,TPacote* pack){
@@ -34,7 +34,7 @@ void removeInicio(TListaDePacotes* l,TPacote* pack){
         l->ultimo = l->primeiro;
     }
     free(aux);
-};
+}
 
 /*imprime a lista de pacotes*/
 void imprimeLista(TListaDePacotes* l){
@@ -49,4 +49,24 @@ void imprimeLista(TListaDePacotes* l){
             printf("\n--------------------------------------------------------------\n");
         aux = aux->prox;
     }
-};
+}
+
+int TamanhoDaLista(TListaDePacotes* l){
+    celula* aux = l->primeiro->prox;
+    int contador = 0;
+    while(aux!= NULL){
+            contador++;
+        aux = aux->prox;
+    }
+    return contador;
+}
+
+celula* PercorrePorIndicie(TListaDePacotes* l,int indicie){
+    int i = 0;
+    celula* atual = l->primeiro->prox;
+    while(atual != NULL && i < indicie) {
+            atual = atual->prox;
+            i++;
+        }
+        return atual; // pode retornar NULL se index >= tamanho
+    }

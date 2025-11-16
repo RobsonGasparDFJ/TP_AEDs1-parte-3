@@ -8,7 +8,7 @@
 int main(){
     // Menu de inserção de dados.
     printf("\n----------------------------------------------\n");
-    printf("Escolha um modo para inserir dados:\n"); 
+    printf("Escolha um modo para inserir dados:\n");
 
     int escolhainicial;
     while (1) {
@@ -17,11 +17,11 @@ int main(){
         if (scanf("%d", &escolhainicial) == 1 && (escolhainicial == 1 || escolhainicial == 2)) {
         break;
         }
-    
+
         printf("\nOpcao invalida, escolha novamente.\n");
         while(getchar() != '\n');
     }
-    
+
     if (escolhainicial == 1) {
 
         tdrone dronemanual;
@@ -39,7 +39,7 @@ int main(){
         inicializar(&pacotemanual);
         printf("Digite para cada pacote: conteudo, destinatario, peso, distancia de entrega:\n");
         for (int i=0 ; i<numdepacotesmanual; i++){
-            scanf("%99s %99s %d %d %d", 
+            scanf("%99s %99s %d %d %d",
                 pacotemanual.conteudo,
                 pacotemanual.destinatario,
                 &pacotemanual.peso,
@@ -47,7 +47,10 @@ int main(){
             RecebimentoDePacote(&galpao, pacotemanual);
             // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotemanual.destinatario);
         }
-        
+        //Ordena a lista do galpão========
+         Shellsort(&galpao);
+         //printf("ordenou");
+        //================================
         while (galpao.ListaDePacotes.primeiro != galpao.ListaDePacotes.ultimo) {
             CarregamentoDePacotes(&galpao); // Galpão libera pacote.
                 if (dronemanual.pesocarregado + PacoteTransportado.peso > manualpesomaximo){ // Verifica se pelo peso consegue pegar.
@@ -92,7 +95,7 @@ int main(){
         TPacote pacotearquivo;
         inicializar(&pacotearquivo);
         for (int i=0 ; i<numdepacotes; i++){
-            fscanf(arquivo, "%99s %99s %d %d %d", 
+            fscanf(arquivo, "%99s %99s %d %d %d",
                 pacotearquivo.conteudo,
                 pacotearquivo.destinatario,
                 &pacotearquivo.peso,
@@ -100,7 +103,12 @@ int main(){
             RecebimentoDePacote(&galpao, pacotearquivo);
             // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotearquivo.destinatario);
         }
-        
+
+        //Ordena a lista do galpão========
+          Shellsort(&galpao);
+          //printf("ordenou");
+        //================================
+
         while (galpao.ListaDePacotes.primeiro != galpao.ListaDePacotes.ultimo) {
             CarregamentoDePacotes(&galpao); // Galpão libera pacote.
                 if (dronearquivo.pesocarregado + PacoteTransportado.peso > arquivopesomaximo){ // Verifica se pelo peso consegue pegar.
@@ -115,7 +123,7 @@ int main(){
         }
         printf ("\nTotal de Quilometros Percorridos no Dia: %dkm\n\n", dronearquivo.distanciatotalpercorrida);
     }
-    
+
 
     return 0;
 }

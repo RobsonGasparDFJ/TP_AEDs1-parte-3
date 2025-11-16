@@ -24,7 +24,7 @@ endif
 #target de compilacao (comando pra compilar no windows -> mingw32-make || comando pra compilar no linux -> make)
 all:
 #faco a compilacao dos arquivos do src (.c) e transformo-os em objetos
-	$(CC) -c $(SRC)/TADDrone.c $(INCLUDE) -o $(OBJ)/TADDrone.o 
+	$(CC) -c $(SRC)/TADDrone.c $(INCLUDE) -o $(OBJ)/TADDrone.o
 	$(CC) -c $(SRC)/TADGalpao.c $(INCLUDE) -o $(OBJ)/TADGalpao.o
 	$(CC) -c $(SRC)/TADListaDePacotes.c $(INCLUDE) -o $(OBJ)/TADListaDePacotes.o
 	$(CC) -c $(SRC)/TADPacote.c $(INCLUDE) -o $(OBJ)/TADPacote.o
