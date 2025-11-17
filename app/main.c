@@ -43,12 +43,13 @@ int main(){
                 pacotemanual.conteudo,
                 pacotemanual.destinatario,
                 &pacotemanual.peso,
-                &pacotemanual.distancia,&pacotemanual.prioridade);
+                &pacotemanual.distancia,
+                &pacotemanual.prioridade);
             RecebimentoDePacote(&galpao, pacotemanual);
             // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotemanual.destinatario);
         }
         //Ordena a lista do galpão========
-         Shellsort(&galpao);
+         SelectionSort(&galpao);
          //printf("ordenou");
         //================================
         while (galpao.ListaDePacotes.primeiro != galpao.ListaDePacotes.ultimo) {
@@ -99,13 +100,14 @@ int main(){
                 pacotearquivo.conteudo,
                 pacotearquivo.destinatario,
                 &pacotearquivo.peso,
-                &pacotearquivo.distancia,&pacotearquivo.prioridade);
+                &pacotearquivo.distancia,
+                &pacotearquivo.prioridade);
             RecebimentoDePacote(&galpao, pacotearquivo);
             // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotearquivo.destinatario);
         }
 
         //Ordena a lista do galpão========
-          Shellsort(&galpao);
+          SelectionSort(&galpao);
           //printf("ordenou");
         //================================
 

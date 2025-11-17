@@ -15,6 +15,7 @@ void CarregamentoDePacotes(TGalpao *Galpao){
     removeInicio (&(Galpao->ListaDePacotes), &PacoteTransportado);
     // printf("\nPacote retirado para transporte! \n");
 }
+
 void Shellsort(TGalpao *Galpao){
     int h = 1;
     int tamanho = TamanhoDaLista(&(Galpao->ListaDePacotes));
@@ -46,5 +47,21 @@ void Shellsort(TGalpao *Galpao){
             }
         }
         h = h / 3;
+    }
+}
+
+void SelectionSort(TGalpao *Galpao){
+    for (celula *i = Galpao->ListaDePacotes.primeiro->prox; i != NULL; i = i->prox){
+        celula *maior = i;
+        for (celula *j = i->prox; j != NULL; j = j->prox){
+            if (j->p.prioridade > maior->p.prioridade){
+                maior = j;
+            }
+        }
+        if (maior != i) {
+            TPacote tmp = i->p;
+            i->p = maior->p;
+            maior->p = tmp;
+        }
     }
 }
