@@ -30,5 +30,10 @@ void removeInicio(TListaDePacotes* l,TPacote* pack);
 /*imprime os pacotes da lista*/
 void imprimeLista(TListaDePacotes* l);
 
+/*retorna o tamanho da lista */
+int TamanhoDaLista(TListaDePacotes* l);
+
+/*Percorre por indicie a lista*/
+celula* PercorrePorIndicie(TListaDePacotes* l,int indicie);
 
 #endif
