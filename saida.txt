@@ -1,0 +1,34 @@
+
++=+=+=+=+=+=+=+=+=+=+=+=+=+=INFORMACOES DOS ALGORITMOS DE ORDENACAO+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+SELECTION: tempo de execucao: 0.00000 s | Comparacoes: 6 | Movimentacoes: 0
+SHELLSORT: tempo de execucao: 0.00000 s | Comparacoes: 5 | Movimentacoes: 9
+
++=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=VIAGENS ORDENADAS POR SELECTION+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+Viagem 1
+Entrega: cu para paulo com prioridade 5
+Entrega: pau para fred com prioridade 5
+Distancia Total: 10km
+
+Viagem 2
+Entrega: vagina para alberto com prioridade 5
+Entrega: sla para mim com prioridade 1
+Distancia Total: 20km
+
+Total de Quilometros Percorridos no Dia: 30km
+
+
++=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=VIAGENS ORDENADAS POR SHELLSORT+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+Viagem 1
+Entrega: sla para mim com prioridade 1
+Entrega: cu para paulo com prioridade 5
+Distancia Total: 20km
+
+Viagem 2
+Entrega: pau para fred com prioridade 5
+Entrega: vagina para alberto com prioridade 5
+Distancia Total: 20km
+
+Total de Quilometros Percorridos no Dia: 40km
+
