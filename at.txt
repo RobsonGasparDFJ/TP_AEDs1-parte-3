@@ -1,7 +1,0 @@
-10
-5
-remedio joao 2 10 9
-comprasmercado estela 10 8 5
-remedio thais 1 5 12
-comprasmercado glaucia 2 7 32
-remedio leticia 3 2 10
