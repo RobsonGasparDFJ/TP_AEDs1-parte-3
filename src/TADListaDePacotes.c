@@ -50,23 +50,3 @@ void imprimeLista(TListaDePacotes* l){
         aux = aux->prox;
     }
 }
-
-int TamanhoDaLista(TListaDePacotes* l){
-    celula* aux = l->primeiro->prox;
-    int contador = 0;
-    while(aux!= NULL){
-            contador++;
-        aux = aux->prox;
-    }
-    return contador;
-}
-
-celula* PercorrePorIndicie(TListaDePacotes* l,int indicie){
-    int i = 0;
-    celula* atual = l->primeiro->prox;
-    while(atual != NULL && i < indicie) {
-            atual = atual->prox;
-            i++;
-        }
-        return atual; // pode retornar NULL se index >= tamanho
-    }

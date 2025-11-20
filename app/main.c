@@ -32,9 +32,9 @@ int main(){
         scanf("%d", &numdepacotesmanual);
         InicializarDrone(&dronemanual, manualpesomaximo);
 
-        TGalpao galpaoShell;
+        TGalpao galpaoQuick;
         TGalpao galpaoSelection;
-        InicializarGalpao(&galpaoShell);
+        InicializarGalpao(&galpaoQuick);
         InicializarGalpao(&galpaoSelection);
 
         TPacote pacotemanual;
@@ -47,38 +47,37 @@ int main(){
                 &pacotemanual.peso,
                 &pacotemanual.distancia,
                 &pacotemanual.prioridade);
-            RecebimentoDePacote(&galpaoShell, pacotemanual);
+            RecebimentoDePacote(&galpaoQuick, pacotemanual);
             RecebimentoDePacote(&galpaoSelection, pacotemanual);
             // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotemanual.destinatario);
         }
         //armazera o tempo de execucao das funcoes
         clock_t inicio,fim;
-        double tempoShell,tempoSelection;
+        double tempoQuick,tempoSelection;
 
-        //Ordena a lista do galpao das duas maneiras possiveis,respectivamente selection e shell (medindo o tempo)
-        int comparacoesSelection =0;
-        int movimentacoesSelection =0;
+        //Ordena a lista do galpao das duas maneiras possiveis,respectivamente selection e Quicksort (medindo o tempo)
+        int comparacoesSelection = 0;
+        int movimentacoesSelection = 0;
         inicio = clock();
         SelectionSort(&galpaoSelection,&comparacoesSelection, &movimentacoesSelection);
         fim = clock();
         tempoSelection = (double)(fim-inicio)/CLOCKS_PER_SEC;
 
-        int comparacoesShell = 0;
-        int movimentacoesShell = 0;
+        //Quicksort
 
         inicio = clock();
-        Shellsort(&galpaoShell,&comparacoesShell,&movimentacoesShell);
+        galpaoQuick.ListaDePacotes.primeiro = quickSort(&galpaoQuick);
         fim = clock();
-        tempoShell = (double)(fim-inicio)/CLOCKS_PER_SEC;
+        tempoQuick = (double)(fim-inicio)/CLOCKS_PER_SEC;
         //imprime a quantidade de tempo de execucao,comparacoes e troca de cada tipo
 
         FILE *arquivo_de_saida;
         arquivo_de_saida = fopen("saida.txt","w");
         fprintf(arquivo_de_saida,"\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=INFORMACOES DOS ALGORITMOS DE ORDENACAO+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
-        fprintf(arquivo_de_saida,"SELECTION: tempo de execucao: %.5lf s | Comparacoes: %d | Movimentacoes: %d\n", 
+        fprintf(arquivo_de_saida,"SELECTION: tempo de execucao: %.5lf s | Comparacoes: %d | Movimentacoes: %d\n",
        tempoSelection, comparacoesSelection, movimentacoesSelection);
-       fprintf(arquivo_de_saida,"SHELLSORT: tempo de execucao: %.5lf s | Comparacoes: %d | Movimentacoes: %d\n", 
-       tempoShell, comparacoesShell, movimentacoesShell);
+       fprintf(arquivo_de_saida,"QUICKSORT: tempo de execucao: %.5lf s | Comparacoes: %d | Movimentacoes: %d\n",
+       tempoQuick, QKcomparacoes, QKmovimentacoes);
 
        fclose(arquivo_de_saida);
         //imprime as viagens com selecao
@@ -97,12 +96,12 @@ int main(){
             dronemanual.pesocarregado = 0;
         }
         printf ("\nTotal de Quilometros Percorridos no Dia: %dkm\n\n", dronemanual.distanciatotalpercorrida);
-        printf("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=VIAGENS ORDENADAS POR SHELLSORT+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
+        printf("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=VIAGENS ORDENADAS POR QUICKSORT+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
         dronemanual.nmrdeviagem = 1;
         dronemanual.distanciatotalpercorrida = 0;
-        //imprime as viagens com o algoritmo shellsort
-        while (galpaoShell.ListaDePacotes.primeiro != galpaoShell.ListaDePacotes.ultimo) {
-            CarregamentoDePacotes(&galpaoShell); // Galpão libera pacote.
+        //imprime as viagens com o algoritmo galpaoQuick
+        while (galpaoQuick.ListaDePacotes.primeiro != galpaoQuick.ListaDePacotes.ultimo) {
+            CarregamentoDePacotes(&galpaoQuick); // Galpão libera pacote.
                 if (dronemanual.pesocarregado + PacoteTransportado.peso > manualpesomaximo){ // Verifica se pelo peso consegue pegar.
                     RealizarEntrega(&dronemanual, (&(dronemanual.listadodrone)));
                     dronemanual.pesocarregado = 0;
@@ -140,15 +139,15 @@ int main(){
         fscanf(arquivo, "%d", &numdepacotes);
         InicializarDrone(&dronearquivo, arquivopesomaximo);
 
-        TGalpao galpaoShell;//galpao que sera organizado por algoritmo de ordenacao shell
+        TGalpao galpaoQuick;//galpao que sera organizado por algoritmo de ordenacao quick
         TGalpao galpaoSelection;//galpao que sera organizado por algoritmo de ordenacao de selacao
-        InicializarGalpao(&galpaoShell);
+        InicializarGalpao(&galpaoQuick);
         InicializarGalpao(&galpaoSelection);
 
 
         TPacote pacotearquivo;
         inicializar(&pacotearquivo);
-        for (int i=0 ; i<numdepacotes; i++){
+        for (int i = 0 ; i < numdepacotes; i++){
             fscanf(arquivo, "%99s %99s %d %d %d",
                 pacotearquivo.conteudo,
                 pacotearquivo.destinatario,
@@ -156,37 +155,36 @@ int main(){
                 &pacotearquivo.distancia,
                 &pacotearquivo.prioridade);
             RecebimentoDePacote(&galpaoSelection, pacotearquivo);
-            RecebimentoDePacote(&galpaoShell, pacotearquivo);
+            RecebimentoDePacote(&galpaoQuick, pacotearquivo);
             // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotearquivo.destinatario);
         }
         //armazera o tempo de execucao das funcoes
         clock_t inicio,fim;
-        double tempoShell,tempoSelection;
+        double tempoQuick,tempoSelection;
 
-        //Ordena a lista do galpao das duas maneiras possiveis,respectivamente selection e shell (medindo o tempo)
-        int comparacoesSelection =0;
-        int movimentacoesSelection =0;
+        //Ordena a lista do galpao das duas maneiras possiveis,respectivamente selection e Quick (medindo o tempo)
+        int comparacoesSelection = 0;
+        int movimentacoesSelection = 0;
         inicio = clock();
         SelectionSort(&galpaoSelection,&comparacoesSelection, &movimentacoesSelection);
         fim = clock();
         tempoSelection = (double)(fim-inicio)/CLOCKS_PER_SEC;
 
-        int comparacoesShell = 0;
-        int movimentacoesShell = 0;
+        //QuickSort
 
         inicio = clock();
-        Shellsort(&galpaoShell,&comparacoesShell,&movimentacoesShell);
+        galpaoQuick.ListaDePacotes.primeiro = quickSort(&galpaoQuick);
         fim = clock();
-        tempoShell = (double)(fim-inicio)/CLOCKS_PER_SEC;
+        tempoQuick = (double)(fim-inicio)/CLOCKS_PER_SEC;
         //imprime a quantidade de tempo de execucao,comparacoes e troca de cada tipo
 
         FILE *arquivo_de_saida;
         arquivo_de_saida = fopen("saida.txt","w");
         fprintf(arquivo_de_saida,"\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=INFORMACOES DOS ALGORITMOS DE ORDENACAO+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
-        fprintf(arquivo_de_saida,"SELECTION: tempo de execucao: %.5lf s | Comparacoes: %d | Movimentacoes: %d\n", 
+        fprintf(arquivo_de_saida,"SELECTION: tempo de execucao: %.5lf s | Comparacoes: %d | Movimentacoes: %d \n",
        tempoSelection, comparacoesSelection, movimentacoesSelection);
-       fprintf(arquivo_de_saida,"SHELLSORT: tempo de execucao: %.5lf s | Comparacoes: %d | Movimentacoes: %d\n", 
-       tempoShell, comparacoesShell, movimentacoesShell);
+       fprintf(arquivo_de_saida,"QUICKSORT: tempo de execucao: %.5lf s | Comparacoes: %lld | Movimentacoes: %lld \n",
+       tempoQuick, QKcomparacoes, QKmovimentacoes);
 
        fclose(arquivo_de_saida);
         //imprime as viagens com selecao
@@ -205,12 +203,12 @@ int main(){
             dronearquivo.pesocarregado = 0;
         }
         printf ("\nTotal de Quilometros Percorridos no Dia: %dkm\n\n", dronearquivo.distanciatotalpercorrida);
-        printf("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=VIAGENS ORDENADAS POR SHELLSORT+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
+        printf("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=VIAGENS ORDENADAS POR QUICKSORT+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
         dronearquivo.nmrdeviagem = 1;
         dronearquivo.distanciatotalpercorrida = 0;
-        //imprime as viagens com o algoritmo shellsort
-        while (galpaoShell.ListaDePacotes.primeiro != galpaoShell.ListaDePacotes.ultimo) {
-            CarregamentoDePacotes(&galpaoShell); // Galpão libera pacote.
+        //imprime as viagens com o algoritmo quicklsort
+        while (galpaoQuick.ListaDePacotes.primeiro != galpaoQuick.ListaDePacotes.ultimo) {
+            CarregamentoDePacotes(&galpaoQuick); // Galpão libera pacote.
                 if (dronearquivo.pesocarregado + PacoteTransportado.peso > arquivopesomaximo){ // Verifica se pelo peso consegue pegar.
                     RealizarEntrega(&dronearquivo, (&(dronearquivo.listadodrone)));
                     dronearquivo.pesocarregado = 0;
