@@ -39,14 +39,18 @@ int main(){
 
         TPacote pacotemanual;
         inicializar(&pacotemanual);
-        printf("Digite para cada pacote: conteudo, destinatario, peso, distancia de entrega:\n");
+        printf("Digite para cada pacote: conteudo, destinatario, peso, distancia de entrega e prioridade:\n");
         for (int i=0 ; i<numdepacotesmanual; i++){
-            scanf("%99s %99s %d %d %d",
-                pacotemanual.conteudo,
-                pacotemanual.destinatario,
-                &pacotemanual.peso,
-                &pacotemanual.distancia,
-                &pacotemanual.prioridade);
+            char conteudo[100];
+            char destinatario[100];
+            int peso,distancia,prioridade;
+            scanf("%99s %99s %d %d %d",conteudo,destinatario,&peso,&distancia,&prioridade);
+            setConteudo(&pacotemanual,conteudo);
+            setDestinatario(&pacotemanual,destinatario);
+            setPeso(&pacotemanual,peso);
+            setDistancia(&pacotemanual,distancia);
+            setPrioridade(&pacotemanual,prioridade);
+
             RecebimentoDePacote(&galpaoQuick, pacotemanual);
             RecebimentoDePacote(&galpaoSelection, pacotemanual);
             // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotemanual.destinatario);
@@ -148,15 +152,17 @@ int main(){
         TPacote pacotearquivo;
         inicializar(&pacotearquivo);
         for (int i = 0 ; i < numdepacotes; i++){
-            fscanf(arquivo, "%99s %99s %d %d %d",
-                pacotearquivo.conteudo,
-                pacotearquivo.destinatario,
-                &pacotearquivo.peso,
-                &pacotearquivo.distancia,
-                &pacotearquivo.prioridade);
+            char conteudo[100];
+            char destinatario[100];
+            int peso,distancia,prioridade;
+            fscanf(arquivo, "%99s %99s %d %d %d",conteudo,destinatario,&peso,&distancia,&prioridade);
+            setConteudo(&pacotearquivo,conteudo);
+            setDestinatario(&pacotearquivo,destinatario);
+            setPeso(&pacotearquivo,peso);
+            setDistancia(&pacotearquivo,distancia);
+            setPrioridade(&pacotearquivo,prioridade);
             RecebimentoDePacote(&galpaoSelection, pacotearquivo);
             RecebimentoDePacote(&galpaoQuick, pacotearquivo);
-            // printf("\n Pacote %d de %s recebido com sucesso!\n", i+1, pacotearquivo.destinatario);
         }
         //armazera o tempo de execucao das funcoes
         clock_t inicio,fim;
@@ -204,6 +210,7 @@ int main(){
         }
         printf ("\nTotal de Quilometros Percorridos no Dia: %dkm\n\n", dronearquivo.distanciatotalpercorrida);
         printf("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=VIAGENS ORDENADAS POR QUICKSORT+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
+        //reiniciando os valores de numero de viagem e distancia percorrida para a proxima viagem
         dronearquivo.nmrdeviagem = 1;
         dronearquivo.distanciatotalpercorrida = 0;
         //imprime as viagens com o algoritmo quicklsort
