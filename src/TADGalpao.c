@@ -35,9 +35,9 @@ celula* particao(celula* cabeca, celula* ultima){
 
         if (atual->p.prioridade > pivo->p.prioridade) {
             QKmovimentacoes++;
-            int temp = atual->p.prioridade;
-            atual->p.prioridade = anterior->prox->p.prioridade;
-            anterior->prox->p.prioridade = temp;
+            TPacote temp = atual->p;
+            atual->p = anterior->prox->p;
+            anterior->prox->p = temp;
 
             anterior = anterior->prox;
         }
@@ -45,9 +45,9 @@ celula* particao(celula* cabeca, celula* ultima){
         atual = atual->prox;
     }
 
-    int temp = pivo->p.prioridade;
-    pivo->p.prioridade = anterior->p.prioridade;
-    anterior->p.prioridade = temp;
+    TPacote temp = pivo->p;
+    pivo->p = anterior->p;
+    anterior->p = temp;
 
     return anterior;
 }

@@ -1,0 +1,20 @@
+10
+20
+remedio maria 2 10 4
+documento jose 1 5 5
+comida pedro 8 12 2
+eletronico ana 4 15 3
+livro lucas 2 8 1
+roupa mariana 3 6 2
+sapato bruno 2 11 1
+presente camila 1 20 4
+celular fernando 1 18 5
+comprasmercado gabriela 15 5 2
+remedio rafael 3 7 4
+documento amanda 1 9 5
+comida diego 10 14 2
+eletronico laura 5 3 3
+livro gustavo 3 13 1
+roupa julia 4 10 2
+sapato felipe 2 8 1
+presente beatriz 2 17 4
